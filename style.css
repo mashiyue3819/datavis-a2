@@ -1,5 +1,131 @@
 body {
-    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* 设置全局字体，无衬线字体更易读 */
+    margin: 0;
+    /* 去除浏览器默认边距 */
+    padding: 20px;
+    /* 给页面四周增加 20px 的内边距 */
+    background-color: #f9f9f9;
+    /* 设置浅灰背景色，护眼 */
+}
+
+h1 {
+    text-align: center;
+    /* 标题居中 */
+    color: #333;
+    /* 标题颜色为深灰 */
+
+}
+
+/* 布局容器：使用 Flexbox 让图表和详情面板左右并排 */
+#container {
+    display: flex;
+    /* 启用弹性盒子布局 */
+    flex-direction: row;
+    /* 子元素横向排列 */
+    justify-content: center;
+    /* 内容居中对齐 */
+    align-items: flex-start;
+    /* 顶部对齐 */
+    gap: 20px;
+    /* 两个板块之间留出 20px 间隙 */
+}
+
+/* 左侧图表容器 */
+#chart {
+    background: white;
+    /* 图表背景为纯白 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* 添加轻微阴影，增加立体感 */
+    padding: 10px;
+    /* 内边距 */
+    border-radius: 8px;
+    /* 圆角边框 */
+}
+
+/* 右侧详情面板容器 */
+#details {
+    width: 300px;
+    /* 固定宽度 */
+    min-height: 400px;
+    /* 最小高度 */
+    background: white;
+    /* 背景纯白 */
+    padding: 20px;
+    /* 内边距 */
+    border-radius: 8px;
+    /* 圆角边框 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* 添加阴影 */
+    display: none;
+    /* 默认隐藏，只有选中点时才显示 */
+}
+
+/* 详情面板里的文字样式 */
+.detail-item {
+    margin-bottom: 10px;
+    /* 每行信息之间的间距 */
+    font-size: 14px;
+    /* 字体大小 */
+    border-bottom: 1px solid #eee;
+    /* 每行下面加一条浅色分割线 */
+    padding-bottom: 5px;
+    /* 分割线与文字的距离 */
+}
+
+.detail-label {
+    font-weight: bold;
+    /* 标签文字加粗 (例如 "Model:") */
+    color: #555;
+    /* 标签颜色 */
+}
+
+/* 坐标轴文字样式 */
+.axis-label {
+    font-size: 12px;
+    /* 坐标轴标签字体大小 */
+    fill: #777;
+    /* 字体颜色 SVG中用fill */
+}
+
+/* 图例文字样式 */
+.legend-text {
+    font-size: 10px;
+    /* 图例字体较小 */
+    alignment-baseline: middle;
+    /* 文字垂直居中对齐图标 */
+}
+
+/* --- 交互样式 --- */
+
+/* 默认圆点的样式 */
+circle {
+    transition: all 0.2s;
+    /* 添加过渡动画，让变化更平滑 */
+    cursor: pointer;
+    /* 鼠标悬停时变成手型 */
+}
+
+/* 鼠标悬停在点上时的样式 */
+circle:hover {
+    opacity: 1 !important;
+    /* 强制不透明 */
+    stroke: #333;
+    /* 增加深色描边 */
+    stroke-width: 2px;
+    /* 描边宽度 */
+}
+
+/* 当点被点击选中时的样式 (在JS中切换此此时) */
+.selected {
+    stroke: #000 !important;
+    /* 黑色描边 */
+    stroke-width: 3px !important;
+    /* 加粗描边 */
+    fill-opacity: 1;
+    /* 填充不透明 */
+    r: 10px !important;
+    /* 临时放大该点，这里使用了 !important 覆盖原有的半径 */
 }
 
 /* YOUR CSS CODE GOES HERE */

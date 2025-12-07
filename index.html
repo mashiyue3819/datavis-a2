@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>DataVis - Assignment 2</title>
-    
-    Instead of this blank page, your beautiful visualizations should appear here :)
-    
-    <!-- Loading d3js version 5-->
-    <script src="d3.v5.min.js"></script>
-  
-    
-    <!-- Loading style.css; use if needed -->
+    <title>Interactive Scatterplot - Assignment 2</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
     <link rel="stylesheet" href="style.css">
-
+        
 </head>
 
 <body>
 
-<!-- YOUR SOLUTION GOES HERE-->
+    <h1>Car Dataset Visualization</h1>
 
+    <div id="container">
+        <div id="chart"></div>
 
-<!-- loading the main javascript file; implement logic there -->
-<script src="main.js"></script>
+        <div id="details">
+            <h3>Car Details</h3>
+            <div id="info-content">Click a circle to see details...</div>
+        </div>
+    </div>
 
+    <script src="main.js"></script>
 </body>
+
 </html>
