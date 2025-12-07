@@ -1,0 +1,21 @@
+The link of my project: https://mashiyue3819.github.io/datavis-a2/
+
+1. Dscribe the main principle of a scatterploy
+The main principle of a scatterplot matrix (SPLOM) is to break down high-dimensional multivariate data into multiple 2D pairwise relationships. 
+It arranges scatterplots of every combination of variable pairs in a grid (matrix) format. 
+This allows users to visualize correlations (e.g., positive or negative) and patterns between all pairs of attributes simultaneously.
+
+2.How many scatterplots for n attributes?
+Total: n^2 plots. For n attributes, the scatterplot matrix consists of n times n = n^2 cells.
+Note: The n cells on the diagonal typically show the univariate distribution (e.g., histograms or labels) since they represent the variable against itself. 
+The off-diagonal plots show the pairwise relationships.
+
+3.Advantages & Disadvantages
+Advantages:
+Overview of Correlations: It provides a comprehensive overview of all pairwise correlations between attributes in a single view.
+Pattern Discovery: It allows users to quickly spot patterns such as linear relationships, clusters, or outliers across multiple dimensions.
+Direct Comparison: The grid layout facilitates easy comparison of correlation strength between different pairs of attributes.
+Disadvantages:
+Scalability Issues: Limited scalability regarding the number of attributes. As n increases, the number of plots grows quadratically n^2, making individual plots too small to read.
+Overplotting: Suffering from overplotting if the dataset is large, making it hard to see the density of data points.
+Limited to Pairwise Relationships: It only visualizes 2D pairwise relationships, potentially missing complex interactions involving three or more variables simultaneously.
