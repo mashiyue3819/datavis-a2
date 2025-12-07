@@ -99,7 +99,7 @@ h1 {
 /* --- 交互样式 --- */
 
 /* 默认圆点的样式 */
-circle {
+.dot {
     transition: all 0.2s;
     /* 添加过渡动画，让变化更平滑 */
     cursor: pointer;
@@ -107,7 +107,7 @@ circle {
 }
 
 /* 鼠标悬停在点上时的样式 */
-circle:hover {
+.dot:hover {
     opacity: 1 !important;
     /* 强制不透明 */
     stroke: #333;

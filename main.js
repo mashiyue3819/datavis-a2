@@ -62,9 +62,20 @@ window.onload = () => {
     // 颜色比例尺：序数 (分类数据)
     const color = d3.scaleOrdinal()
       .domain(data.map(d => d.Type)) // 输入范围：所有车型
-      .range(d3.schemeSet2); // 输出范围：D3 内置的一组颜色
+      .range(["#de5c5fff", "#8fcdffff", "#4DAF4A", "#0015fdff", "#6a5787ff"]);
+
 
     // --- 5. 绘制坐标轴 (Axes) ---
+
+    const shape = d3.scaleOrdinal()
+      .domain(data.map(d => d.Type))
+      .range([
+        d3.symbolCircle,
+        d3.symbolTriangle,
+        d3.symbolSquare,
+        d3.symbolDiamond,
+        d3.symbolStar
+      ]);
 
     // 添加 X 轴
     svg.append("g")
@@ -94,20 +105,12 @@ window.onload = () => {
 
     // --- 6. 绘制散点 (dots) ---
 
-    const shape = d3.scaleOrdinal()
-      .domain(data.map(d => d.Type))
-      .range([
-        d3.symbolCircle,
-        d3.symbolTriangle,
-        d3.symbolSquare,
-        d3.symbolDiamond,
-        d3.symbolStar
-      ]);
+
 
     const dots = svg.selectAll(".dot") // 选择所有圆(此时为空)
       .data(cleanData) // 绑定数据
       .enter() // 进入数据节点
-      .append("path") // 对每个数据添加一个圆
+      .append("path") // 对每个数据添加一个path
       .attr("class", "dot")
       .attr("transform", d => `translate(${x(d.Horsepower)},${y(d.City_MPG)})`)
       .attr("d", d3.symbol()
@@ -178,20 +181,34 @@ window.onload = () => {
       .attr("transform", (d, i) => `translate(${width + 20}, ${i * 20})`); // 垂直排列
 
     // 图例色块
-    legend.append("rect")
+    legend.append("path")
       .attr("x", 0)
       .attr("width", 12)
       .attr("height", 12)
       .style("fill", color);
 
     // 图例文字
+    legend.append("path")
+      .attr("d", d3.symbol()// 使用 d3.symbol 生成形状生成器
+        .type(d => shape(d))// 关键：使用 shape 比例尺根据车型(d)获取对应的形状
+        .size(80)// 设置一个固定的合适大小（面积为 80 平方像素）
+      )
+      // symbol 生成的形状中心在 (0,0)，我们需要将其平移到图例行的合适位置。
+      // 这里平移到 (6, 6) 是为了让它在一个大约 12x12 的假想区域内居中。
+      .attr("transform", "translate(6,6)")
+      .style("fill", color)
+      .style("stroke", "#888")
+      .style("stroke-width", 0.5);
+
     legend.append("text")
-      .attr("x", 20)
+      .attr("x", 18)
       .attr("y", 6)
       .attr("dy", ".35em") // 垂直微调
       .attr("class", "legend-text")
       .style("text-anchor", "start")
+      .style("font-size","12px")
       .text(d => d);
+
 
   }).catch(function (error) {
     // 错误处理：如果找不到 csv 文件，控制台会报错
